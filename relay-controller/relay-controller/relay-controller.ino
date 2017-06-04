@@ -40,33 +40,33 @@ void loop() {
 void messageCallout(String message) {
 	Serial.print(message);
 
-	if (message.equals("hallon"))           hall.close(message);
-	else if (message.equals("halloff"))     hall.open(message);
-	else if (message.equals("lampon"))      lamp.close(message);
-	else if (message.equals("lampoff"))     lamp.open(message);
-	else if (message.equals("walkon"))      walk.close(message);
-	else if (message.equals("walkoff"))     walk.open(message);
-	else if (message.equals("otheron"))     other.close(message);
-	else if (message.equals("otheroff"))    other.open(message);
-	else if (message.equals("reporthall"))  st.send(hall.status() == OPEN ? "hall=0;" : "hall=1;");
-	else if (message.equals("reportlamp"))  st.send(lamp.status() == OPEN ? "lamp=0;" : "lamp=1;");
-	else if (message.equals("reportwalk"))  st.send(walk.status() == OPEN ? "walk=0;" : "walk=1;");
-	else if (message.equals("reportother")) st.send(other.status() == OPEN ? "other=0;" : "other=1;");
-	else if (message.equals("allon")) {
-		hall.close("hallon");
-		lamp.close("lampon");
-		walk.close("walkon");
-		other.close("otheron");
-		st.send("allon");
+	if (message.equals("0"))      hall.close(message);
+	else if (message.equals("1")) hall.open(message);
+	else if (message.equals("2")) lamp.close(message);
+	else if (message.equals("3")) lamp.open(message);
+	else if (message.equals("4")) walk.close(message);
+	else if (message.equals("5")) walk.open(message);
+	else if (message.equals("6")) other.close(message);
+	else if (message.equals("7")) other.open(message);
+	else if (message.equals("a")) st.send(hall.status() == OPEN ? "hall=0;" : "hall=1;");
+	else if (message.equals("b")) st.send(lamp.status() == OPEN ? "lamp=0;" : "lamp=1;");
+	else if (message.equals("c")) st.send(walk.status() == OPEN ? "walk=0;" : "walk=1;");
+	else if (message.equals("d")) st.send(other.status() == OPEN ? "other=0;" : "other=1;");
+	else if (message.equals("8")) {
+		hall.close("0");
+		lamp.close("2");
+		walk.close("4");
+		other.close("6");
+		st.send("8");
 	}
-	else if (message.equals("alloff")) {
-		hall.open("halloff");
-		lamp.open("lampoff");
-		walk.open("walkoff");
-		other.open("otheroff");
-		st.send("alloff");
+	else if (message.equals("9")) {
+		hall.open("1");
+		lamp.open("2");
+		walk.open("5");
+		other.open("7");
+		st.send("9");
 	}
-	else if (message.equals("reportall")) {
+	else if (message.equals("e")) {
 		String ret = "";
 		ret = ret + (hall.status() == OPEN ? "hall=0;" : "hall=1;");
 		ret = ret + (lamp.status() == OPEN ? "lamp=0;" : "lamp=1;");
